@@ -1,59 +1,75 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rolar Dados 🎲</title>
+  <title>RPG de Terror - Rolagem de Dados</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #20232a;
-      color: #fff;
-      margin-top: 100px;
-    }
-    input, button {
-      padding: 10px;
-      font-size: 16px;
-      margin: 10px;
-      border-radius: 10px;
-      border: none;
+      background-color: #1b1b1b;
+      color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
     button {
-      background-color: #61dafb;
-      color: #000;
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
       cursor: pointer;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 5px;
     }
-    button:hover {
-      background-color: #21a1f1;
-    }
-    #resultado {
-      font-size: 24px;
-      margin-top: 20px;
+    input {
+      width: 50px;
+      font-size: 16px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <h1>🎲 Rolar Dados 🎲</h1>
-  <p>Escolha quantos dados deseja rolar:</p>
-  <input type="number" id="qtdDados" min="1" value="1">
-  <button id="rolar">Rolar</button>
-  <div id="resultado"></div>
-
+  <h1>RPG de Terror - Rolagem de Dados</h1>
+  
+  <label>Quantos lados? </label>
+  <input type="number" id="sides" value="6" min="2">
+  
+  <label>Quantos dados? </label>
+  <input type="number" id="amount" value="1" min="1">
+  
+  <button onclick="rollDice()">Rolar Dados</button>
+  
+  <h2 id="result">Resultado: -</h2>
+  
+  <button onclick="sendWhatsApp()">Enviar para WhatsApp</button>
+  
   <script>
-    const botao = document.getElementById("rolar");
-    const resultadoDiv = document.getElementById("resultado");
+    let lastRoll = "";
 
-    botao.addEventListener("click", () => {
-      const qtd = parseInt(document.getElementById("qtdDados").value) || 1;
-      const resultados = [];
-
-      for (let i = 0; i < qtd; i++) {
-        resultados.push(Math.floor(Math.random() * 6) + 1);
+    function rollDice() {
+      const sides = parseInt(document.getElementById('sides').value);
+      const amount = parseInt(document.getElementById('amount').value);
+      const results = [];
+      for(let i=0; i<amount; i++){
+        results.push(Math.floor(Math.random() * sides) + 1);
       }
+      lastRoll = results.join(', ');
+      document.getElementById('result').innerText = "Resultado: " + lastRoll;
+    }
 
-      resultadoDiv.innerHTML = 🎲 Resultado: [${resultados.join(", ")}];
-    });
+    function sendWhatsApp() {
+      if(!lastRoll){
+        alert("Role os dados primeiro!");
+        return;
+      }
+      const phone = "5531998199329"; // seu número com código do Brasil
+      const message = encodeURIComponent("Resultado da rolagem: " + lastRoll);
+      window.open(https://api.whatsapp.com/send?phone=${phone}&text=${message}, "_blank");
+    }
   </script>
 </body>
 </html>
