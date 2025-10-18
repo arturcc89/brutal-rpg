@@ -3,61 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rolador de Dados 🎲</title>
+  <title>Rolar Dados 🎲</title>
   <style>
     body {
-      background-color: #222;
-      color: #fff;
       font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
+      text-align: center;
+      background-color: #20232a;
+      color: #fff;
+      margin-top: 100px;
     }
-
-    h1 {
-      margin-bottom: 20px;
-    }
-
     input, button {
       padding: 10px;
-      margin: 5px;
+      font-size: 16px;
+      margin: 10px;
+      border-radius: 10px;
       border: none;
-      border-radius: 8px;
     }
-
-    input {
-      width: 80px;
-      text-align: center;
-    }
-
     button {
-      background-color: #4CAF50;
-      color: white;
+      background-color: #61dafb;
+      color: #000;
       cursor: pointer;
-      transition: 0.3s;
     }
-
     button:hover {
-      background-color: #45a049;
+      background-color: #21a1f1;
     }
-
     #resultado {
+      font-size: 24px;
       margin-top: 20px;
-      font-size: 1.2em;
     }
   </style>
 </head>
 <body>
-
-  <h1>🎲 Rolador de Dados 🎲</h1>
-  <label for="qtdDados">Quantidade de dados:</label>
+  <h1>🎲 Rolar Dados 🎲</h1>
+  <p>Escolha quantos dados deseja rolar:</p>
   <input type="number" id="qtdDados" min="1" value="1">
-  <button id="rolar">Rolar!</button>
-
-  <div id="resultado">Aguardando rolagem...</div>
+  <button id="rolar">Rolar</button>
+  <div id="resultado"></div>
 
   <script>
     const botao = document.getElementById("rolar");
@@ -74,6 +55,5 @@
       resultadoDiv.innerHTML = 🎲 Resultado: [${resultados.join(", ")}];
     });
   </script>
-
 </body>
 </html>
